@@ -1,0 +1,293 @@
+" ================================================================================================symotion-s)
+" = Extensions =====================================
+" ================================================================================================
+Plug 'preservim/nerdtree'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-commentary'
+set ideajoin
+" set idearefactormode=keep
+let mapleader=" "
+" ================================================================================================
+" = Basic settings =====================================
+" ================================================================================================
+nnoremap L $
+nnoremap H ^
+nnoremap <leader>sc :nohlsearch<CR>
+vnoremap L $
+vnoremap H ^
+nmap f <Plug>(easymotion-s)
+" xnoremap p pgvy
+nnoremap <C-j> 5j
+nnoremap <C-k> 5k
+
+
+
+set clipboard+=unnamed
+set ignorecase
+set scrolloff=30
+set history=200
+
+set number
+set relativenumber
+set argtextobj
+
+set incsearch
+set hlsearch
+set keep-english-in-normal
+set multicursor
+map q <Plug>(multicursor-ms/)
+map z <Plug>(multicursor-mcv)
+map Z <Plug>(multicursor-mcr)
+" set surrouns
+" ================================================================================================
+" = No Leader Keymaps =====================================
+" ================================================================================================
+nmap ge <action>(GotoNextError)
+nmap gt <action>(GotoTest)
+nmap gm <action>(MethodUp)
+" last changed in current buffer(file)
+nmap ga '.
+
+" paste之后不会把yank的内容替换掉
+" vmap p "_dp
+
+" bookmark in whole program
+nmap me mE
+nmap 'e 'E
+nmap mr mR
+nmap 'r 'R
+
+" 使用以下命令，可以在Normal Mode和Visual/Select Mode下，利用Tab键和Shift-Tab键来缩进文本：
+nmap <tab> V>
+nmap <s-tab> V<
+vmap <tab> >gv
+vmap <s-tab> <gv
+
+" 快速复制到行尾
+vnoremap Y y$
+nnoremap Y y$
+
+" 删除不进寄存器
+nnoremap x "_x
+nnoremap X "_X
+nnoremap d "_d
+nnoremap c "_c
+nnoremap diw "_diw
+nnoremap ciw "_ciw
+vnoremap diw "_diw
+vnoremap ciw "_ciw
+
+nnoremap dd "_dd
+nnoremap D "_D
+vnoremap d "_d
+vnoremap dd "_dd
+
+nnoremap <leader>x "*x
+nnoremap <leader>X "*X
+nnoremap <leader>d "*d
+nnoremap <leader>dd "*dd
+nnoremap <leader>D "*D
+vnoremap <leader>d "*d
+vnoremap <leader>dd "*dd
+nmap <leader>p ddP
+
+" ================================================================================================
+" = Leader Keymaps =====================================
+" ================================================================================================
+" leaderkey
+
+" ================================================================================================
+" 👻👻👻 Which-Key 👻👻👻
+" ================================================================================================
+set which-key
+set notimeout
+
+" arthars
+" nmap <leader>aw <S-W>
+
+
+" f: Find/Format ⭐️
+let g:WhichKeyDesc_FindOrFormat = "<leader>f FindOrFormat"
+let g:WhichKeyDesc_FindOrFormat_FindFile = "<leader>ff FindFile"
+nmap <leader>ff <action>(GotoFile)
+
+let g:WhichKeyDesc_SelectInProjectView = "<leader>fl SelectInProjectView"
+nmap <leader>fl <action>(SelectInProjectView)
+
+let g:WhichKeyDesc_FindOrFormat_FindText = "<leader>ft FindText"
+nmap <leader>ft <action>(FindInPath)
+
+let g:WhichKeyDesc_FindOrFormat_Commands = "<leader>fc Commands"
+nmap <leader>fc <action>(GotoAction)
+
+let g:WhichKeyDesc_FindOrFormat_RevealIn = "<leader>fp RevealIn"
+nmap <leader>fp <action>(RevealIn)
+
+let g:WhichKeyDesc_FindOrFormat_Format = "<leader>fm Format"
+nmap <leader>fm <action>(ReformatCode) \| <action>(OptimizeImports)
+
+
+
+let g:WhichKeyDesc_FindOrFormat_VimFindActionId = "<leader>fa VimFindActionIdAction"
+nmap <leader>fa <action>(VimFindActionIdAction);
+
+
+
+
+" g: Git ⭐️
+let g:WhichKeyDesc_Git = "<leader>g Git"
+let g:WhichKeyDesc_Git_RollbackHunk = "<leader>gr RollbackHunk"
+nmap <leader>gr :action Vcs.RollbackChangedLines<CR>
+
+" i: Insert ⭐️
+let g:WhichKeyDesc_InsertAfterBrackets = "<leader>i InsertAfterBrackets"
+nmap <leader>i f(a
+
+" j: add Semicolon and goto nextline⭐️
+let g:WhichKeyDesc_InsertSemicolon = "<leader>j InsertSemicolon"
+nmap <leader>j A;<ESC>o;
+
+" l: lsp: Language server protocol (align with neovim)⭐️
+let g:WhichKeyDesc_LSP = "<leader>l LSP"
+let g:WhichKeyDesc_LSP_Rename = "<leader>lr Rename"
+nmap <leader>lr <action>(RenameElement)
+
+
+" n: No ⭐️
+let g:WhichKeyDesc_No_Highlight = "<leader>nl NoHighlight"
+nmap <leader>nl :nohlsearch<CR>
+
+
+" s: Show ⭐️
+let g:WhichKeyDesc_Show = "<leader>s Show"
+let g:WhichKeyDesc_Show_FileStructure = "<leader>ss 查看文件方法"
+nmap <leader>ss <action>(FileStructurePopup)
+let g:WhichKeyDesc_Show_Bookmarks = "<leader>sb 查看书签"
+nmap <leader>sb <action>(ShowBookmarks)
+let g:WhichKeyDesc_Show_EditorContextInfo = "<leader>sm 查看当前方法定义信息"
+nmap <leader>sm <action>(EditorContextInfo)
+
+"Maven
+let g:WhichKeyDesc_Maven = "<leader>m Maven"
+let g:WhichKeyDesc_Maven_Maven.Reimport = "<leader>mr Maven.Reimport"
+map <leader>mr <action>(Maven.Reimport)
+let g:WhichKeyDesc_Maven_Maven.ShowSettings = "<leader>ms Maven.ShowSettings"
+map <leader>ms <action>(Maven.ShowSettings)
+
+let g:WhichKeyDesc_ImplementMethods = "<leader>mi ImplementMethods"
+map <leader>mi <action>(ImplementMethods)
+
+" r: Run/Re ⭐️
+" let g:WhichKeyDesc_RunOrRe = "<leader>r RunOrRe"
+" let g:WhichKeyDesc_RunOrRe_ReRun = "<leader>rr ReRun"
+" nmap <leader>rr <action>(Rerun)
+let g:WhichKeyDesc_RunOrRe_ReRunTests = "<leader>rt ReRunTests"
+nmap <leader>rt <action>(RerunTests)
+let g:WhichKeyDesc_RunOrRe_Rename = "<leader>rn Rename"
+map <leader>rn <action>(RenameElement)
+let g:WhichKeyDesc_RunAnything = "<leader>rd RunAnything"
+
+let g:WhichKeyDesc_RunOrRe_Debug = "<leader>rd JRebel Debug"
+map <leader>rd <action>(JRebel Debug)
+
+
+let g:WhichKeyDesc_RunOrRe_Rerun = "<leader>rr Rerun"
+map <leader>rr <action>(Rerun)
+
+let g:WhichKeyDesc_RunOrRe_Stop = "<leader>rs Stop"
+map <leader>rs <action>(Stop)
+
+map <leader>ra <action>(RunAnything)
+let g:WhichKeyDesc_DebugClass = "<leader>rm DebugClass"
+map <leader>rm <action>(DebugClass)
+
+let g:WhichKeyDesc_Debug = "<leader>d 断点"
+let g:WhichKeyDesc_XDebugger.MuteBreakpoints = "<leader>de XDebugger.MuteBreakpoints"
+map <leader>de <action>(XDebugger.MuteBreakpoints)
+let g:WhichKeyDesc_ViewBreakpoints = "<leader>dv 查看所有断点"
+map <leader>dv <action>(ViewBreakpoints)
+let g:WhichKeyDesc_ToggleLineBreakpoint = "<leader>ds 打一个断点"
+map <leader>ds <action>(ToggleLineBreakpoint)
+" w: Window ⭐️
+let g:WhichKeyDesc_Windows = "<leader>w Windows"
+let g:WhichKeyDesc_Windows_maximize = "<leader>wo maximize"
+nmap <leader>wo <action>(UnsplitAll) \| <action>(HideAllWindows)
+let g:WhichKeyDesc_Windows_splitWindowVertically = "<leader>wl splitWindowVertically"
+nmap <leader>wl <action>(Macro.SplitVertically)
+nmap <leader>mt <action>(Macro.matest)
+let g:WhichKeyDesc_Windows_closeActiveWindow = "<leader>wac closeActiveWindow"
+nmap <leader>wac <c-w>c
+let g:WhichKeyDesc_Windows_closeOtherFile = "<leader>wc CloseOtherFile"
+nmap <leader>wc <action>(CloseAllEditorsButActive)
+
+
+" c: Copy ⭐️;
+let g:WhichKeyDesc_CopyKeyDesc = "<leader>c 复制"
+let g:WhichKeyDesc_CopyKeyDesc_CopyReference = "<leader>cr 复制引用"
+nmap <leader>cr <action>(CopyReference)
+let g:WhichKeyDesc_CopyKeyDesc_CopyPathWithLineNumber = "<leader>cl 复制类行号"
+nmap <leader>cl <action>(CopyPathWithLineNumber)
+let g:WhichKeyDesc_CopyKeyDesc_CodeCompletion = "<leader>cc 代码提示"
+nmap <leader>cc <action>(CodeCompletion)
+let g:WhichKeyDesc_Close_Copilot = "<leader>cp copilot.disableCopilot"
+nmap <leader>cp <action>(copilot.disableCopilot)
+
+let g:WhichKeyDesc_Open_Copilot = "<leader>op copilot.enableCopilot)"
+nmap <leader>op <action>(copilot.enableCopilot)
+
+" g: go
+let g:WhichKeyDesc_GoKeyDesc = "<leader>g GoKeyDesc"
+let g:WhichKeyDesc_GoKeyDesc_GotoDeclaration = "<leader>gd GotoDeclaration"
+nmap <leader>gd <action>(GotoDeclaration)
+
+let g:WhichKeyDesc_GoKeyDesc = "<leader>g GotoImplementation"
+let g:WhichKeyDesc_GoKeyDesc_GotoImplementation = "<leader>gi GotoImplementation"
+nmap <leader>gi <action>(GotoImplementation)
+let g:WhichKeyDesc_Git_Annotate = "<leader>gn Annotate"
+nmap <leader>gn <action>(Annotate)
+
+
+" e: Toggle Explorer ⭐️
+let g:WhichKeyDesc_ToggleExplorerOrExtract = "<leader>e ToggleExplorer"
+nmap <leader>e <action>(ActivateProjectToolWindow)
+" e: Extract
+" extract method/function
+vmap <leader>em <action>(ExtractMethod)
+" extract constant
+vmap <leader>ec <action>(IntroduceConstant)
+" extract field
+vmap <leader>ef <action>(IntroduceField)
+" extract variable
+vmap <leader>ev <action>(IntroduceVariable)
+
+set selectmode+=mouse
+
+
+" edit ideavimrc
+nnoremap <leader>ve :vim ~/.ideavimrc <CR>
+nnoremap <leader>vw :w!<CR>
+nnoremap <leader>vs :source ~/.ideavimrc <CR>
+nmap <leader>vr <action>(IdeaVim.ReloadVimRc.reload)
+" previous method
+noremap [[ <ESC>:action MethodUp<CR>
+" next method
+noremap ]] <ESC>:action MethodDown<CR>
+
+
+"解决shift无法按使用问题
+nmap <S-Up> v<Up>
+nmap <S-Down> v<Down>
+nmap <S-Left> v<Left>
+nmap <S-Right> v<Right>
+vmap <S-Up> <Up>
+vmap <S-Down> <Down>
+vmap <S-Left> <Left>
+vmap <S-Right> <Right>
+imap <S-Up> <Esc>v<Up>
+imap <S-Down> <Esc>v<Down>
+imap <S-Left> <Esc>v<Left>
+imap <S-Right> <Esc>v<Right>
+nnoremap <a-h> gT
+nnoremap <a-l> gt
+" nnoremap <c-s-tab> gT
+" nnoremap <c-tab> gt
